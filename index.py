@@ -49,9 +49,9 @@ def main():
     for article in articles:
         row = (
             article['id'],
-            article['title'],
+            article['title'].replace('\"', ''),
             article['year'],
-            article['conference'] if 'conference' in article else '',
+            article['conference'].replace('\"', '') if 'conference' in article else '',
             # article['abstract'] if 'abstract' in article else ''
         )
         articleStrings.append(";".join(row))
