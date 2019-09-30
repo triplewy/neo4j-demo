@@ -54,35 +54,35 @@ def main():
             article['conference'] if 'conference' in article else '',
             article['abstract'] if 'abstract' in article else ''
         )
-        articleStrings.append(",".join(row))
+        articleStrings.append(";".join(row))
 
     f = open("articles.csv", "w")
-    f.write("id,title,year,conference,abstract\n" + "\n".join(articleStrings))
+    f.write("id;title;year;conference;abstract\n" + "\n".join(articleStrings))
     f.close()
 
     relatedArticleStrings = []
     for item in relatedArticles:
-        relatedArticleStrings.append(item['paperId'] + ',' + item['relatedId'])
+        relatedArticleStrings.append(item['paperId'] + ';' + item['relatedId'])
 
     f = open("related.csv", "w")
-    f.write("articleId,relatedId\n" + "\n".join(relatedArticleStrings))
+    f.write("articleId;relatedId\n" + "\n".join(relatedArticleStrings))
     f.close()
 
     authorStrings = []
     for name, authorId in authorNames.items():
-        authorStrings.append(str(authorId) + ',' + name)
+        authorStrings.append(str(authorId) + ';' + name)
 
     f = open("authors.csv", "w")
-    f.write("id,name\n" + "\n".join(authorStrings))
+    f.write("id;name\n" + "\n".join(authorStrings))
     f.close()
 
     authorStrings = []
     for item in authors:
         if item['paperId']:
-            authorStrings.append(item['paperId'] + ',' + item['authorId'])
+            authorStrings.append(item['paperId'] + ';' + item['authorId'])
 
     f = open("authorsToArticles.csv", "w")
-    f.write("paperId,authorId\n" + "\n".join(authorStrings))
+    f.write("paperId;authorId\n" + "\n".join(authorStrings))
     f.close()
 
 
