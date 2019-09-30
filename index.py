@@ -52,12 +52,12 @@ def main():
             article['title'],
             article['year'],
             article['conference'] if 'conference' in article else '',
-            article['abstract'] if 'abstract' in article else ''
+            # article['abstract'] if 'abstract' in article else ''
         )
         articleStrings.append(";".join(row))
 
     f = open("articles.csv", "w")
-    f.write("id;title;year;conference;abstract\n" + "\n".join(articleStrings))
+    f.write("id;title;year;conference\n" + "\n".join(articleStrings))
     f.close()
 
     relatedArticleStrings = []
