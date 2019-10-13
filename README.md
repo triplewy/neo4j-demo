@@ -14,4 +14,8 @@ Queries:
 
 - LOAD CSV WITH HEADERS FROM "https://github.com/triplewy/neo4j-demo/raw/master/related.csv" AS row FIELDTERMINATOR ';' MATCH (article1:Article {id: row.articleId}) MATCH (article2:Article {id: row.relatedId}) MERGE (article1)-[:CITED]->(article2);
 
-- USING PERIODIC COMMIT LOAD CSV WITH HEADERS FROM "https://github.com/triplewy/neo4j-demo/raw/master/twitter.csv" AS row FIELDTERMINATOR " " CREATE (:User {id: row.user1}) CREATE (:User {id: row.user2});
+- USING PERIODIC COMMIT LOAD CSV WITH HEADERS FROM "https://github.com/triplewy/neo4j-demo/raw/master/twitter_small.csv" AS row FIELDTERMINATOR " " CREATE (:User {id: row.user1}) CREATE (:User {id: row.user2});
+
+- CREATE INDEX ON :User(id);
+
+- LOAD CSV WITH HEADERS FROM "https://github.com/triplewy/neo4j-demo/raw/master/twitter_small.csv" AS row FIELDTERMINATOR " " MATCH (user1:User {id: row.user1}) MATCH (user2:User {id: row.user2}) MERGE (user1)-[:FOLLOWS]->(user2);
